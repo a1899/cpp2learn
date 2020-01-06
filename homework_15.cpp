@@ -4,38 +4,48 @@
 
 #include <iostream>
 
-void spiral(int** arr, const int& w, const int& h)
+void spiral(int** arr, const int& width, const int& height)
 {
 	int i = 0;
 	int j = 0;
 	int k = 0;
-	while ((j < w - k) || (i < h - k) || (j >= k) || (i >= k))
+	int w;
+	int h;
+	for (;;)
 	{
-		for (; j < w - k; ++j)
+		w = width - 1 - k;
+		h = height - 1 - k;
+		for (; j < w; ++j)
 		{
 			std::cout << arr[i][j] << " ";
 		}
-		for (++i, --j; i < h - k; ++i)
+		if (!(i < h))
+			break;
+		for (; i < h; ++i)
 		{
 			std::cout << arr[i][j] << " ";
 		}
-		for (--i, --j; j >= k; --j)
+		if (!(j > k))
+			break;
+		for (; j > k; --j)
 		{
 			std::cout << arr[i][j] << " ";
 		}
-		for (--i, ++j, ++k; i >= k; --i)
+		++k;
+		if (!(i > k))
+			break;
+		for (; i > k; --i)
 		{
 			std::cout << arr[i][j] << " ";
 		}
-		++i;
-		++j;
 	}
+	std::cout << arr[i][j] << " ";
 }
 
 int main()
 {
-	int h = 6;
-	int w = 8;
+	int h = 5;
+	int w = 7;
 	int** arr = new int* [h];
 	for (int i = 0; i < h; ++i)
 	{
